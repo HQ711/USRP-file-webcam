@@ -1,4 +1,4 @@
-#python benchmark_receiver.py -a addr=192.168.10.2 --rx-freq=2.45e9 -m gmsk -r 500e3 --to-file='/home/huaqing/Desktop/test.png'
+#python benchmark_receiver.py -a addr=192.168.10.2 --rx-freq=2.45e9 -m gmsk -r 500e3 --to-file='/test.png'
 from gnuradio import gr, gru
 from gnuradio import blocks
 from gnuradio import eng_notation
@@ -109,7 +109,6 @@ def main():
         if options.live==False:
             write_to_file(payload[2:])
         else:
-            #print 'length',len(payload),'data', type(struct.unpack('!H',payload[2:4]))
             if struct.unpack('!H',payload[2:4])==(78,):
                 temp_message = temp_message + payload[4:]
             elif struct.unpack('!H',payload[2:4])==(89,):
@@ -120,8 +119,6 @@ def main():
                 temp_message = payload[2:]
                 server_socket.sendto(temp_message,client_addr)
                 temp_message=''
-                #sent=s.send(payload[2:])
-            #print "transmitted",sent,bytes
 
     if options.to_file is not None:
         f=open(options.to_file,'w')
