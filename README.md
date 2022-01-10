@@ -4,6 +4,8 @@ Enviorment:
     Ubuntu 18.04
     Python2.7
     Gnuradio3.7
+    
+Put transmitter.py receiver.py and udp_client.py under the Gnuradio->gr-digital->narrowband
             
 Transmitter:
 --
