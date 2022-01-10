@@ -1,8 +1,10 @@
 # USRP-file-webcam
-Enviorment: Ubuntu 18.04
-            Python2.7
-            Gnuradio3.7
-
+Enviorment: 
+--
+    Ubuntu 18.04
+    Python2.7
+    Gnuradio3.7
+            
 Transmitter:
 
 e.g. For webcam use following command
@@ -39,6 +41,6 @@ Args invoved:
 
 udp_client:
 
-python udp_client.py
+     python udp_client.py
 
 to show the live video
