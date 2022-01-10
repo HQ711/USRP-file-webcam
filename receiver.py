@@ -1,4 +1,3 @@
-#python benchmark_receiver.py -a addr=192.168.10.2 --rx-freq=2.45e9 -m gmsk -r 500e3 --to-file='/test.png'
 from gnuradio import gr, gru
 from gnuradio import blocks
 from gnuradio import eng_notation
