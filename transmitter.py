@@ -1,4 +1,4 @@
-#python benchmark_transmitter.py -a addr=192.168.20.2 --tx-freq=2.45e9 -m gmsk -r 500e3 --from-file='/home/yue/Desktop/sample.png'
+#python benchmark_transmitter.py -a addr=192.168.20.2 --tx-freq=2.45e9 -m gmsk -r 500e3 --from-file='/sample.png'
 
 
 from gnuradio import gr, gru
@@ -139,25 +139,22 @@ def main():
             WIDTH=400
             while(source_file.isOpened()):
                 _,frame = source_file.read()
-                for i in range(0,int(options.pyrDown)):
-                    frame = cv2.pyrDown(frame)
-                #frame = imutils.resize(frame,width=WIDTH)
+                if options.from_file is None:
+                    for i in range(0,int(options.pyrDown)):
+                        frame = cv2.pyrDown(frame)
+                else:
+                    frame = imutils.resize(frame,width=WIDTH)
                 encoded,buffer = cv2.imencode('.jpg',frame,[cv2.IMWRITE_JPEG_QUALITY,80])
                 message = base64.b64encode(buffer)
                 #playload length must in [0,4096]
                 message_len = len(message)
-                #print 'begin!!!!!'
                 if message_len > 4090:
                     for i in range(0,message_len//pkt_size):
                         temp_message = message[i*pkt_size:(i+1)*pkt_size]
                         payload = struct.pack('!H',pktno) + struct.pack('!H',78) + temp_message
                         send_pkt(payload)
-                        #print type(payload)
-                        #print 'length: ',len(payload),' data: ', payload[2:20]
                     payload = struct.pack('!H',pktno) + struct.pack('!H',89) + message[((message_len//pkt_size))*pkt_size:]
                     send_pkt(payload)
-                    #print 'length: ',len(payload),' data: ', payload[2:20]
-
                 else:
                     payload = struct.pack('!H',pktno) + struct.pack('!H',89) + message
                     send_pkt(payload)
