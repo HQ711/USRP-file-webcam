@@ -1,6 +1,3 @@
-#python benchmark_transmitter.py -a addr=192.168.20.2 --tx-freq=2.45e9 -m gmsk -r 500e3 --from-file='/sample.png'
-
-
 from gnuradio import gr, gru
 from gnuradio import blocks
 from gnuradio import eng_notation
@@ -60,7 +57,6 @@ def main():
                       default='gmsk',
                       help="Select modulation from: %s [default=%%default]"
                             % (', '.join(mods.keys()),))
-
     parser.add_option("-s", "--size", type="eng_float", default=4000,
                       help="set packet size [default=%default]")
     parser.add_option("-M", "--megabytes", type="eng_float", default=1.2,
@@ -80,7 +76,6 @@ def main():
         mod.add_options(expert_grp)
 
     (options, args) = parser.parse_args ()
-
 
     if len(args) != 0:
         parser.print_help()
