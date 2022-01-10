@@ -5,6 +5,7 @@ Enviorment: Ubuntu 18.04
 
 Transmitter:
 e.g. For webcam use following command
+
      python transmitter.py -a addr=192.168.10.2 --tx-freq=2.45e9 -r 500e3 -m gmsk --live
 Args invoved:
      -a                 USRP address
